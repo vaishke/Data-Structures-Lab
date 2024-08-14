@@ -2,24 +2,24 @@
 
 ## Programs in Stacks
 
-[ ] Stacks using Arrays (static)
-[ ] Stacks using Arrays (dynamic memory allocation)
-[ ] Infix to Postfix expression conversion
-[ ] Infix to prefix expression conversion
-[ ] Postfix expression evaluation
-[ ] Implementing Queues using Stacks
+<p>[ ] Stacks using Arrays (static)</p>
+<p>[ ] Stacks using Arrays (dynamic memory allocation)</p>
+<p>[ ] Infix to Postfix expression conversion</p>
+<p>[ ] Infix to prefix expression conversion</p>
+<p>[ ] Postfix expression evaluation</p>
+<p>[ ] Implementing Queues using Stacks</p>
 
 
 ## Programs in Queues
 
-[ ] Queues using Arrays
-[ ] Implementing Stacks using Queues
-[ ]
+<p>[ ] Queues using Arrays</p>
+<p>[ ] Implementing Stacks using Queues</p>
+<p>[ ]</p>
 
 
 ## Programs in Linked Lists
 
-[ ] Implementation of Singly-linked list
-[ ] Implementation of doubly-linked list
-[ ] Implementation of Stacks using Linked list
-[ ] Implementation of Queues using Linked list
+<p>[ ] Implementation of Singly-linked list</p>
+<p>[ ] Implementation of doubly-linked list</p>
+<p>[ ] Implementation of Stacks using Linked list</p>
+<p>[ ] Implementation of Queues using Linked list</p>
