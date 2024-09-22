@@ -8,7 +8,7 @@ int rear = -1;
 int queue[SIZE];
 
 bool isEmpty();
-void Insert(int);
+bool isFull();
 void Enqueue();
 void Dequeue();
 void Display();
@@ -51,13 +51,6 @@ bool isFull()
 	return (rear ==  SIZE - 1);
 }
 
-void Insert(int element)
-{
-	front = 0;
-	rear = 0;
-	queue[rear] = element;
-}
-
 void Enqueue()
 {
 	int element;
@@ -66,7 +59,9 @@ void Enqueue()
 	
 	if(front == -1 && rear == -1)
 	{
-		Insert(element);
+		front = front + 1;
+		rear = rear + 1;
+		queue[rear] = element;
 	}
 	
 	else if(isFull())
@@ -84,14 +79,14 @@ void Enqueue()
 
 void Dequeue()
 {
-	if(isEmpty)
+	if(isEmpty())
 	{
 		printf("Queue is empty.\n");
 	}
 	
 	else
 	{
-		printf("Dequeued element: %d", queue[front]);
+		printf("Dequeued element: %d \n", queue[front]);
 		front = front + 1;
 	}
 }

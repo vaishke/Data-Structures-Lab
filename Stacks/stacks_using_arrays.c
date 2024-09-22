@@ -1,5 +1,5 @@
 #include<stdio.h>
-#include<stdlib.h>
+#include<stdlib.h> 
 #include<stdbool.h>
 
 #define SIZE 5
@@ -19,22 +19,20 @@ int main()
 	int choice;
 	while(1)
 	{
-		printf("Stack Operations: \n1. Push \n2. Pop \n3. Peak \n4. Display \n5. Exit \n");
+		printf("Stack Operations: \n1. Push \n2. Pop \n3. Display \n4. Exit \n");
 		printf("Enter your choice: ");
 		scanf("%d", &choice);
 
 		switch(choice)
 		{
 			case 1: push();
-				break;
+					break;
 			case 2: pop();
-				break;
-			case 3: peak();
-				break;
-			case 4: display();
-				break;
-			case 5: exit(0);
-				break;
+					break;
+			case 3: display();
+					break;
+			case 4: exit(0);
+					break;
 			default: printf("Enter valid choice.\n");
 		}
 	}
@@ -48,6 +46,11 @@ bool isEmpty()
 bool isFull()
 {
 	return top == SIZE - 1;
+}
+
+int peak()
+{
+	return stack[top];
 }
 
 void push()
@@ -79,16 +82,18 @@ void pop()
 	}
 }
 
-int peak()
-{
-	return stack[top];
-}
-
 void display()
 {
-	for(int i = top; i >= 0; i--)
+	if(isEmpty())
 	{
-		printf("%d \t", stack[i]);
+		printf("Stack is Empty.\n");
 	}
-	printf("\n");
+	else
+	{
+		for(int i = top; i >= 0; i--)
+		{
+			printf("%d \t", stack[i]);
+		}
+		printf("\n");
+	}
 }
