@@ -19,7 +19,7 @@ int main()
 
 	while(1)
 	{
-		printf("*****Double Linked List*****\n");
+		printf("*****Double Linked List*****\n	");
 		printf("1. Insert Node \n2. Delete Node \n3. Traverse List \n4. Exit \n");
 		printf("Enter your choice: ");
 		scanf("%d", &choice);

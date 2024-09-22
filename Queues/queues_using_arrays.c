@@ -102,7 +102,7 @@ void Display()
 	{
 		for(i = front; i <= rear; i++)
 		{
-			printf("%d\t", queue[i]);
+			printf("%d \t", queue[i]);
 		}
 		printf("\n");
 	}
