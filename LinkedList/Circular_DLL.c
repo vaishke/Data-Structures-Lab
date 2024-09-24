@@ -7,20 +7,21 @@ struct Node
     struct Node *previous, *next;
 } *new, *header, *ptr, *ptr1, *ptr2;
 
-int count_of_nodes = 0;
+int count = 0;
 
 void insert();
 void delete();
-void traverse();
+void display();
 
 int main()
 {
     int choice;
+    header = NULL;
 
     while(1)
     {
-        printf("*****Circular Double Linked List*****\n");
-        printf("1. Insert Node \n2. Delete Node \n3. Traverse List \n4. Exit \n");
+        printf("*****Circular DLL*****\n");
+        printf("1. Insert \n2. Delete \n3. Display \n4. Exit \n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
 
@@ -28,95 +29,91 @@ int main()
         {
             case 1: insert();
                     break;
-            
             case 2: delete();
                     break;
-            
-            case 3: traverse();
+            case 3: display();
                     break;
-            
             case 4: exit(0);
 
-            default: printf("Invalid Choice.\n");
+            default: printf("Invalid choice.\n");
         }
     }
 }
 
 void insert()
 {
-    int num;
+    int element;
     new = malloc(sizeof(struct Node));
 
-    printf("Enter Number: ");
-    scanf("%d", &num);
-    new -> data = num;
+    printf("Enter element: ");
+    scanf("%d", &element);
+    new -> data = element;
 
     if(header == NULL)
     {
         new -> previous = new;
         new -> next = new;
         header = new;
-        count_of_nodes = count_of_nodes + 1;
+        count = count + 1;
     }
 
     else
     {
         int position;
-
         printf("Enter position: ");
         scanf("%d", &position);
 
-        if(position < 1 || position > (count_of_nodes + 1))
+        if(position < 1 || position > (count + 1))
         {
-            printf("Invalid Position.\n");
+            printf("Invalid position.\n");
         }
 
         else if(position == 1)
         {
             ptr = header;
-            while(ptr -> next != header)
+            for(int i = 0; i < count; i++)
+            {
+                ptr = ptr -> next;
+            }
+
+            ptr -> next = new;
+            new -> previous = ptr;
+            new -> next = header;
+            header -> previous = new;
+            header = new;
+            count = count + 1;
+        }
+
+        else if(position == (count + 1))
+        {
+            ptr = header;
+            for(int i = 1; i < count; i++)
             {
                 ptr = ptr -> next;
             }
             ptr -> next = new;
             new -> previous = ptr;
             new -> next = header;
-            header -> previous = new;
-            header = new;
-            count_of_nodes = count_of_nodes + 1;
-        }
-
-        else if(position == (count_of_nodes + 1))
-        {
-            ptr = header;
-            while(ptr -> next != header)
-            {
-                ptr = ptr -> next;
-            }
-            ptr1 = ptr -> next;
-            ptr1 -> next = new;
-            new -> previous = ptr1;
-            new -> next = header;
-            header -> previous = new;
-            count_of_nodes = count_of_nodes + 1;
+            header -> previous = ptr;
+            count = count + 1;
         }
 
         else
         {
             ptr = header;
+
             for(int i = 1; i < (position - 1); i++)
             {
                 ptr = ptr -> next;
             }
             ptr1 = ptr -> next;
-            ptr1 -> next = new;
-            new -> previous = ptr1;
-            new -> next = ptr;
-            ptr -> previous = new;
-            count_of_nodes = count_of_nodes + 1;
+            ptr -> next = new;
+            new -> previous = ptr;
+            new -> next = ptr1;
+            ptr1 -> previous = new;
+            count = count + 1;
         }
     }
-
 }
 
 void delete()
@@ -129,97 +126,100 @@ void delete()
     else
     {
         int position;
-
-        printf("Enter position to delete: ");
+        printf("Enter your position: ");
         scanf("%d", &position);
 
-        if(position < 1 || position > count_of_nodes)
+        if(position < 1 || position > count)
         {
-            printf("Invalid Position.\n");
+            printf("Invalid position.\n");
         }
 
         else if(position == 1)
         {
             ptr = header;
-            for(int i = 1; i < (position - 1); i++)
+            ptr1 = header -> next;
+            for(int i = 1; i < count; i++)
             {
                 ptr = ptr -> next;
             }
-            ptr1 = header -> next;
-            ptr2 = ptr -> next;
             ptr -> next = ptr1;
             ptr1 -> previous = ptr;
-            free(ptr2);
-            count_of_nodes = count_of_nodes - 1;
+            printf("Deleted Element: %d\n", header -> data);
+            free(header);
+            header = ptr1;
+            count = count - 1;
         }
 
-        else if(position == count_of_nodes)
+        else if(position == count)
         {
-            ptr = header;            
-            for(int i = 1; i < (position - 1); i++)
+            ptr = header;
+            for(int i = 1; i < (count - 1); i++)
             {
                 ptr = ptr -> next;
             }
-            ptr2 = ptr -> next;
+            ptr1 = ptr -> next;
             ptr -> next = header;
             header -> previous = ptr;
-            free(ptr2);
-            count_of_nodes = count_of_nodes - 1;
+            printf("Deleted Element: %d\n", ptr1 -> data);
+            free(ptr1);
+            count = count - 1;
         }
 
         else
         {
-            ptr = header;            
-            for(int i = 1; i < (position - 1); i++)
+            ptr = header;
+            for(int i = 0; i < (position - 1); i++)
             {
                 ptr = ptr -> next;
             }
-            ptr2 = ptr -> next;
-            ptr1 = ptr2 -> next;
-            ptr -> next = ptr1;
-            ptr1 -> previous = ptr;
-
+            ptr1 = ptr -> next;
+            ptr2 = ptr1 -> next;
+            ptr -> next = ptr2;
+            ptr2 -> previous = ptr;
+            printf("Deleted Element: %d\n", ptr1 -> data);
+            free(ptr1);
+            count = count - 1;
         }
     }
 }
 
-void traverse()
+void display()
 {
     if(header == NULL)
     {
-        printf("List is empty.\n");
+        printf("List is Empty.\n");
     }
 
     else
     {
         int choice;
-        printf("*****Traversal*****\n");
-        printf("1. Traversal \n2. Reverse Traversal \n");
+        printf("1. Traverse \n2. Reverse Traverse \n");
+        printf("Enter your choice: ");
         scanf("%d", &choice);
 
         if(choice == 1)
         {
             ptr = header;
-            for(int i = 1; i <= count_of_nodes; i++)
+            for(int i = 1; i <= count; i++)
             {
-                printf("%d \t", ptr -> data);
+                printf("%d\t", ptr -> data);
                 ptr = ptr -> next;
             }
-            printf("\n");    
+            printf("\n");
         }
 
         else if(choice == 2)
         {
             ptr = header;
-            for(int i = 0; i < count_of_nodes; i++)
+            for(int i = 1; i < count; i++)
             {
                 ptr = ptr -> next;
             }
-
-            while(ptr != header)
+            ptr1 = ptr;
+            for(int i = 1; i <= count; i++)
             {
-                printf("%d \t", ptr -> data);
-                ptr = ptr -> previous;
+                printf("%d\t", ptr1 -> data);
+                ptr1 = ptr1 -> previous;
             }
             printf("\n");
         }
