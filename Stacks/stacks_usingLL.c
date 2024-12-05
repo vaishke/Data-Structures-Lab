@@ -5,7 +5,8 @@ void push();
 void pop();
 void display();
 
-struct node{
+struct node
+{
 	int data;
 	struct node *link;
 } *top, *new, *ptr;

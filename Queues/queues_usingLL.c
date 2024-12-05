@@ -7,6 +7,7 @@ struct Node
     int data;
     struct Node *link;
 } *new, *front, *rear, *ptr;
+
 bool isEmpty();
 void enqueue();
 void dequeue();

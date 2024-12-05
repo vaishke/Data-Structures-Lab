@@ -20,8 +20,6 @@ int insert()
 {
     int data;
     int count = 0;
-
-    
     scanf("%d", &data);
 
     bucket = Hash(data);
